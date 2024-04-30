@@ -3,262 +3,156 @@
 
 <head>
     <title>form</title>
-    <style>
-        form {
-            border: 5px double black;
-            padding: 10px;
-            width: 550px;
-            padding: 20px;
-        }
-
-        #form_heading {
-            text-align: center;
-            border: 1px solid black;
-            width: 300px;
-            padding: 0 100px;
-            margin-left: 20px;
-
-        }
-
-        .form_details {
-            margin-left: 20px;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
-            margin-bottom: 10PX;
-        }
-
-        .inside_lables {
-            display: inline;
-        }
-
-        table {
-            border: 1px solid black;
-        }
-
-        th,
-        td {
-            border: 1px solid black;
-            padding: 2px 10px;
-
-        }
-    </style>
-
-    <script>
-        function pushToTable() {
-
-            var fname = document.getElementById("fname").value;
-            var lname = document.getElementById("lname").value;
-            var email = document.getElementById("email").value;
-            var number = document.getElementById("number").value;
-            var pass = document.getElementById("pass").value;
-            var address = document.getElementById("address").value;
-
-
-            var nameElement = document.getElementById("table-name");
-            var emailElement = document.getElementById("table-email");
-            var numberElement = document.getElementById("table-number");
-            var passElement = document.getElementById("table-pass");
-            var genderElement = document.getElementById("table-gender");
-            var addressElement = document.getElementById("table-address");
-
-            nameElement.innerHTML = fname + " " + lname;
-            emailElement.innerHTML = email;
-            numberElement.innerHTML = number;
-            passElement.innerHTML = pass;
-            addressElement.innerHTML = address;
-
-            var languagesList = new Array();
-
-            var languages = document.getElementsByName("languages");
-            for (var i = 0; i < languages.length; i++) {
-                if (languages[i].checked == true) {
-                    languagesList.push(languages[i]);
-                }
-            }
-
-            var languagesElement = document.getElementById("table-languages");
-            for (var i = 0; i < languagesList.length; i++) {
-                var li = document.createElement("li");
-                li.innerHTML = languagesList[i].value;
-                languagesElement.appendChild(li);
-            }
-
-            var selectedList = new Array();
-
-            // var select = document.getElementById("interest").options;
-            // for (var i = 0; select.length; i++) {
-            //     if (select[i] !=null && select[i].selected == true) {
-            //         console.log(select[i].value);
-            //         selectedList.push(select[i].value);
-            //     }
-            // }
-
-            // var selectionElement = document.getElementById("table-interest")
-            // for (var i = 0; selectedList.length; i++) {
-            //     console.log(selectedList[i]);
-            //     var selectli = document.createElement("li");
-            //     selectli.innerHTML = selectedList[i];
-            //     selectionElement.appendChild(selectli);
-            // }
-
-            if (document.getElementById("male").checked == true) {
-                genderElement.innerHTML = "MALE";
-            }
-            else if (document.getElementById("female").checked == true) {
-                genderElement.innerHTML = "FEMALE";
-            }
-            else {
-                genderElement.innerHTML = "Not wish to Disclose";
-
-            }
-
-            // document.getElementById("form").style.display="none";
-        }
-    </script>
+    <script src="./JS/site.js"></script>
 </head>
 
 <body>
-    <form id="form">
+    <form id="form" onsubmit="pushToTable()">
         <div id="form_heading">
+            <link rel="stylesheet" href="Styles/site.css">
             <h1>LOGIN FORM</h1>
         </div>
 
         <div class="form_details">
-            <label for="fname">Name</label>
-            <input type="text" id="fname" name="fname" placeholder="FirstName">
-            <input type="text" id="lname" name="lname" placeholder="LastName">
 
+            <label for="fname">Name</label>
+            <input type="text" id="fname" name="fname" placeholder="FirstName" onfocusout="nameValidate()">
+            <input type="text" id="lname" name="lname" placeholder="LastName" onfocusout="nameValidate()"> <span
+                class="error" id="nameInvalid"></span>
 
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email">
+            <input type="email" id="email" name="email" placeholder="Email" onfocusout="emailValidate()"> <span
+                class="error" id="emailInvalid"></span>
 
 
 
             <label for="number">Phone Number</label>
-            <input type="text" id="number" name="number" maxlength="10" placeholder="10-digit number">
+            <input type="text" id="number" name="number" maxlength="10" placeholder="10-digit number"
+                onfocusout="numberValidate()"> <span class="error" id="numberInvalid"></span>
 
 
 
             <label for="pass">Password</label>
-            <input type="password" id="pass" name="pass" placeholder="password">
+            <input type="password" id="pass" name="pass" placeholder="password" onfocusout="passValidate()"> <span
+                class="error" id="passInvalid"></span>
 
 
 
             <label for="male">Gender</label>
-            <input type="radio" id="male" name="gender" value="Male" checked>
+            <input type="radio" id="male" name="gender" value="Male">
             <label for="male" class="inside_lables">Male</label><br>
             <input type="radio" id="female" name="gender" value="Female">
             <label for="female" class="inside_lables">Female</label><br>
             <input type="radio" id="no" name="gender" value="Not wish to Disclose">
-            <label for="no" class="inside_lables">Not wish to Disclose</label><br>
+            <label for="no" class="inside_lables">Not wish to Disclose</label> <span class="error"
+                id="genderInvalid"></span><br>
 
             <label for="address">Address :</label>
-            <textarea name="address" id="address" cols="30" rows="10"></textarea>
+            <textarea name="address" id="address" cols="30" rows="10" onfocusout="addressValidate()"></textarea><span
+                class="error" id="addressInvalid"></span>
 
 
             <label for="dob">Date Of Birth</label>
-            <input type="date" name="dob" id="dob">
+            <input type="date" name="dob" id="dob" required>
 
 
             <label for="time">Time</label>
-            <input type="time" name="time" id="time">
+            <input type="time" name="time" id="time" required>
 
 
             <label for="Languages">Languages</label>
-            <input type="checkbox" name="languages" id="tamil" value="tamil" checked>
+            <input type="checkbox" name="languages" id="tamil" value="tamil">
             <label for="tamil" class="inside_lables">Tamil</label><br>
             <input type="checkbox" name="languages" id="english" value="english">
             <label for="english" class="inside_lables">English</label><br>
             <input type="checkbox" name="languages" id="french" value="french">
-            <label for="french" class="inside_lables">French</label><br>
+            <label for="french" class="inside_lables">French</label> <span class="error"
+                id="languageInvalid"></span><br>
 
             <label for="interest">Select Your field of interest</label>
             <select name="interest" id="interest" size="3" multiple>
-                <option value="select">Select</option>
                 <option value="Music">Music</option>
                 <option value="Cycling">Cycling</option>
                 <option value="Batminton">Batminton</option>
             </select>
+            <span class="error" id="interestInvalid"></span>
 
             <label for="upload">Upload your Photo</label>
-            <input type="file" name="upload" id="upload">
+            <input type="file" name="upload" id="upload" required>
 
             <br><br>
-            <input onclick="" type="submit" value="submit">
+            <input type="submit" value="submit">
             <input type="reset" value="reset">
         </div>
     </form>
-    <button onclick="pushToTable()">click</button>
 
-    <table id="table">
-        <caption>
-            <h1>OUTPUT SCREEN</h1>
-        </caption>
-        <thead>
-            <tr>
-                <th>SECTION</th>
-                <th>USER DETAILS</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th>USERNAME</th>
-                <td id="table-name"></td>
-            </tr>
-            <tr>
-                <th>EMAIL ID</th>
-                <td id="table-email">Rethik@gmail.com</td>
-            </tr>
-            <tr>
-                <th>PHONENUMBER</th>
-                <td id="table-number">9836348383</td>
-            </tr>
-            <tr>
-                <th>PASSWORD</th>
-                <td id="table-pass">******</td>
-            </tr>
-            <tr>
-                <th>GENDER</th>
-                <td id="table-gender">MALE</td>
-            </tr>
-            <tr>
-                <th>CURRENT ADDRESS</th>
-                <td id="table-address">FLAT NO 2,ANNA APARTMENTS ,ANNA NAGAR, CHENNAI - 600029</td>
-            </tr>
-            <tr>
-                <th>DATE OF BIRTH</th>
-                <td id="table-date">22/10/2000</td>
-            </tr>
-            <tr>
-                <th>TIME</th>
-                <td id="table-time">10:10 AM</td>
-            </tr>
-            <tr>
-                <th>LANGUAGES</th>
-                <td>
-                    <ul id="table-languages">
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <th>FIELD OF INTEREST</th>
-                <td>
-                    <ul id="table-interest">
-                        <li>BADMINTON</li>
-                        <li>CRICKET</li>
-                        <li>MUSIC</li>
-                    </ul>
-                </td>
-            </tr>
-            <tr>
-                <th>UPLOAD YOUR PICTURE</th>
-                <td><img src="./Images/myImage.jpg" alt="myPic" width="100px"></td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="table">
+        <table>
+            <caption>
+                <h1>OUTPUT SCREEN</h1>
+            </caption>
+            <thead>
+                <tr>
+                    <th>SECTION</th>
+                    <th>USER DETAILS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>USERNAME</th>
+                    <td id="table-name"></td>
+                </tr>
+                <tr>
+                    <th>EMAIL ID</th>
+                    <td id="table-email">Rethik@gmail.com</td>
+                </tr>
+                <tr>
+                    <th>PHONENUMBER</th>
+                    <td id="table-number">9836348383</td>
+                </tr>
+                <tr>
+                    <th>PASSWORD</th>
+                    <td id="table-pass">******</td>
+                </tr>
+                <tr>
+                    <th>GENDER</th>
+                    <td id="table-gender">MALE</td>
+                </tr>
+                <tr>
+                    <th>CURRENT ADDRESS</th>
+                    <td id="table-address">FLAT NO 2,ANNA APARTMENTS ,ANNA NAGAR, CHENNAI - 600029</td>
+                </tr>
+                <tr>
+                    <th>DATE OF BIRTH</th>
+                    <td id="table-date">22/10/2000</td>
+                </tr>
+                <tr>
+                    <th>TIME</th>
+                    <td id="table-time">10:10 AM</td>
+                </tr>
+                <tr>
+                    <th>LANGUAGES</th>
+                    <td>
+                        <ul id="table-languages">
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th>FIELD OF INTEREST</th>
+                    <td>
+                        <ul id="table-interest">
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th>UPLOAD YOUR PICTURE</th>
+                    <td><img src="./Images/myImage.jpg" alt="myPic" width="100px"></td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="reset" onclick="HandleBack()" value="Back"/>
+    </div>
+
 </body>
 
 </html>
