@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="./Styles/site.cs">
+    <script type="text/javascript">
+        // var car = {
+        //     carBrand: "tesla",
+        //     carModel: "model S",
+        //     price: 2_00_000,
+
+        //     teslaAutoPilot: function () {
+        //         document.write("this car has auto pilot");
+        //     }
+        // };
+        // document.write(car.carBrand);
+        // document.write(car.carModel);
+        // document.write(car.price);
+        // car.teslaAutoPilot();
+
+        function car(carBrand, carModel, price) {
+            this.carBrand = carBrand;
+            this.carModel = carModel;
+            this.price = price;
+        }
+
+        var c1 = new car("Tesla", "model 3", 1000);
+        document.write(c1.carBrand);
+        var c2 = new car("ford", "s", 2312);
+        document.write(c2.carBrand);
+
+        var str1 = "  asjd   ";
+        var str2 = new String(" adhhsd  ");
+        document.write(str1.toUpperCase());
+        document.write(str2.toLowerCase())
+        document.write(typeof (str1))
+        document.write(typeof (str2))
+
+        function handleClick() {
+            document.getElementById("heading").innerHTML = "Hello World !!!";
+        }
+
+
+        function inputFun() {
+            var str = document.getElementById("name").value;
+            alert("Name is " + str)
+
+        }
+
+        function selectFun() {
+            var select = document.getElementById("selection");
+            alert(select.options[select.selectedIndex].value);
+        }
+
+        function tagFun() {
+            var para = document.getElementsByTagName("p");
+            para[0].style.color = "red";
+            para[1].style.fontSize = "3rem";
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="handleClick()">click</button>
+    <h1 id="heading">Hello</h1>
+
+    <input type="text" placeholder="enter" id="name">
+    <button onclick="inputFun()">enter</button><br><br>
+
+    <select name="selection" id="selection">
+        <option value="1">one</option>
+        <option value="2">two</option>
+        <option value="3">three</option>
+    </select>
+    <button onclick="selectFun()">alert</button><br><br>
+
+    <p>hi</p>
+    <p>hello</p>
+    <p>welcome</p>
+    <button onclick="tagFun()">click me</button>
+</body>
+
+</html>
