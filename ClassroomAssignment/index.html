@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="./Styles/site.css">
+    <script src="./JS/library.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <img src="./Images/syncfusionIcon.png" alt="logo" class="logo">
+        <a href="">Library Portal</a>
+        <a href="">Books</a>
+    </nav>
+
+    <div class="wrapper" id="form-container">
+        <h1>Add New Book</h1>
+        <form onsubmit="pushToTable()" id="form">
+            <table>
+                <tr>
+                    <th><label for="selection">Category</label></th>
+                    <td><select name="selection" id="selection" class="input" onfocusout="selectionValidate()">
+                            <option value="IT">select</option>
+                            <option value="IT">IT</option>
+                            <option value="CS">CS</option>
+                            <option value="MECH">MECH</option>
+                        </select> </td>
+                    <td><span id="selectionInvalid"></span></td>
+                </tr>
+                <tr>
+                    <th><label for="book">Book </label></th>
+                    <td> <input type="text" name="book" id="book" onfocusout="booknameValidate()" class="input"> </td>
+                    <td><span id="bookInvalid"></span></td>
+                </tr>
+                <tr>
+                    <th><label for="email">Author Email </label></th>
+                    <td><input type="text" name="email" id="email" onfocusout="emailValidate()" class="input"></td>
+                    <td><span id="emailInvalid"></span></td>
+                </tr>
+                <tr>
+                    <th><label for="name">Author Name </label></th>
+                    <td><input type="text" name="name" id="name" onfocusout="authorNameValidate()" class="input"></td>
+                    <td><span id="authorNameInvalid"></span></td>
+                </tr>
+                <tr>
+                    <th><label for="published">Published </label></th>
+                    <td><input type="number" name="published" id="published" onfocusout="publishedValidate()"
+                            class="input"></td>
+                    <td><span id="publishedInvalid"></span></td>
+                </tr>
+                <tr>
+                    <th><label for="price">Price </label></th>
+                    <td><input type="text" name="price" id="price" onfocusout="priceValidate()" class="input"></td>
+                    <td><span class="error" id="priceInvalid"></span></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="Save" onclick="pushToTable()" class="btn"></td>
+                    <td><input type="reset" value="Cancel" class="btn"></td>
+                    <td><input type="submit" value="Show" class="btn"></td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+    <div id="table-container">
+        <h1 id="table-header">Book Details</h1>
+        <table id="table">
+            <tr>
+                <th>Category</th>
+                <td id="table-category">IT</td>
+            </tr>
+            <tr>
+                <th>Book</th>
+                <td id="table-book">C++</td>
+            </tr>
+            <tr>
+                <th>Author Email</th>
+                <td id="table-email">Balaguruswamy</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td id="table-author">Balaguruswamy</td>
+            </tr>
+            <tr>
+                <th>Published</th>
+                <td id="table-published">2001</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td id="table-price">500</td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="handleBack()" class="btn">Back</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <footer class="footer">
+        Copyright &copy;<span id="date"></span> - present Syncfusion
+    </footer>
+</body>
+
+</html>
